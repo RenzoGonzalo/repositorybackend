@@ -1,14 +1,21 @@
-require('dotenv').config()
-const https = require('http')
+require('dotenv').config(); // Cargar variables de entorno
 
-function requestController(){
-    console.log('Bienvenidos al curso')
+const http = require('http'); // Corregido: importamos el módulo http
+
+// Controlador de la solicitud
+function requestController(req, res) {
+    console.log('Bienvenidos al curso');
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.end('Servidor funcionando correctamente');
 }
 
-const server=http.createServer(requestController)
+// Crear el servidor
+const server = http.createServer(requestController);
 
-const PORT=process.env.PORT
+// Usar el puerto desde las variables de entorno o el puerto 3000 como valor por defecto
+const PORT = process.env.PORT || 3000; 
 
-server.listen(PORT, function(){
-    console.log("Aplicacion corriendo en: " + PORT)
-})
+// Iniciar el servidor
+server.listen(PORT, function() {
+    console.log("Aplicación corriendo en el puerto: " + PORT);
+});
